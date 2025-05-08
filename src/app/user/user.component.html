@@ -1,27 +1,33 @@
-<h1>users</h1>
-<table border="1" style="border-collapse: collapse; margin:20px;">
-  <tr>
-    <th>Id</th>
-    <th>Name</th>
-    <th>username</th>
-    <th>email</th>
-    <th>website</th>
-    <th>Adress </th>
-  </tr>
-    <tr *ngFor="let user of users">
+<h1 class="text-center my-4">Users</h1>
+<div class="table-responsive">
+  <table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Website</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
         <td>{{user.id}}</td>
-        <td><a routerLink="/user/{{user.id}}">{{user.name}}</a></td>
+        <td><a [routerLink]="'/user/' + user.id">{{user.name}}</a></td>
         <td>{{user.username}}</td>
         <td>{{user.email}}</td>
         <td>{{user.website}}</td>
         <td>
-            <div>{{user.address.street}}</div>
-            <div>{{user.address.city}}</div>
+          <div>{{user.address.street}}</div>
+          <div>{{user.address.city}}</div>
         </td>
-    </tr>
-</table>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-@if (users==null)
-{
-    <img src="https://cdnl.iconscout.com/lottie/premium/thumb/loading-circle-5922100-4936396.gif" height="200" width="200">
-}
+<div *ngIf="!users" class="text-center mt-4">
+  <img src="https://cdnl.iconscout.com/lottie/premium/thumb/loading-circle-5922100-4936396.gif" 
+       height="200" width="200" alt="Loading...">
+</div>
